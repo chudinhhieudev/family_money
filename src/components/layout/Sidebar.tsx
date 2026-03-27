@@ -8,6 +8,7 @@ import {
   CreditCardOutlined,
   TagsOutlined,
   FileTextOutlined,
+  MessageOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
 } from '@ant-design/icons';
@@ -47,6 +48,11 @@ export function Sidebar({ collapsed = false, onCollapse }: SidebarProps) {
       key: '/categories',
       icon: <TagsOutlined />,
       label: 'Danh mục',
+    },
+    {
+      key: '/chat',
+      icon: <MessageOutlined />,
+      label: 'Trò chuyện AI',
     },
     {
       key: '/reports',

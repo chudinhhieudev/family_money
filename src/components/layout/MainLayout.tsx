@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { Layout } from 'antd';
 import { Sidebar } from './Sidebar';
 import { Header } from './Header';
-import { FloatingChat } from '@/components/chat/FloatingChat';
 
 const { Content } = Layout;
 
@@ -55,7 +54,6 @@ export function MainLayout({ children }: MainLayoutProps) {
           {children}
         </Content>
       </Layout>
-      <FloatingChat />
     </Layout>
   );
 }
