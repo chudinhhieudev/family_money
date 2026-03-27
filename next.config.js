@@ -2,6 +2,10 @@
 const nextConfig = {
   reactCompiler: true,
   transpilePackages: ['antd', '@ant-design/icons'],
+  
+  // Empty turbopack config to silence the warning
+  turbopack: {},
+  
   webpack: (config, { isServer }) => {
     // Optimize heavy libraries
     config.resolve.alias = {

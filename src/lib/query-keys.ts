@@ -63,8 +63,8 @@ export const queryKeys = {
 } as const;
 
 // Type helpers for better TypeScript support
-export type QueryKey = typeof queryKeys[keyof typeof queryKeys][string];
-export type QueryKeyFactory = ReturnType<typeof queryKeys[keyof typeof queryKeys]>;
+export type QueryKey = readonly string[];
+export type QueryKeyFactory = () => readonly string[];
 
 // Utility function to create dynamic query keys
 export function createQueryKey<T extends Record<string, any>>(
@@ -73,20 +73,18 @@ export function createQueryKey<T extends Record<string, any>>(
 ): readonly string[] {
   if (!params) return base;
   
-  const sortedParams = Object.keys(params)
-    .sort()
-    .reduce((result, key) => {
-      result[key] = params[key];
-      return result;
-    }, {} as T);
+  const sortedParams: Record<string, any> = {};
+  Object.keys(params).sort().forEach(key => {
+    sortedParams[key] = params[key];
+  });
   
   return [...base, JSON.stringify(sortedParams)];
 }
 
 // Utility function to invalidate multiple related queries
-export function getInvalidationKeys(baseKey: readonly string[]): readonly string[][] {
+export function getInvalidationKeys(baseKey: readonly string[]): string[][] {
   return [
-    baseKey,
+    [...baseKey],
     [...baseKey, 'list'],
     [...baseKey, 'detail'],
   ];

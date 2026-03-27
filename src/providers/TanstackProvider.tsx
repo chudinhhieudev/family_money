@@ -1,12 +1,12 @@
 'use client';
 
-import { QueryClient, QueryClientProvider, HydrationBoundary } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider, HydrationBoundary, DehydratedState } from '@tanstack/react-query';
 import { ReactNode, useState } from 'react';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 interface TanstackProviderProps {
   children: ReactNode;
-  dehydratedState?: unknown;
+  dehydratedState?: DehydratedState;
 }
 
 // Create a client instance that will be shared across the app

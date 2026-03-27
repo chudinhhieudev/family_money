@@ -81,10 +81,9 @@ export function DashboardOverview() {
             <Statistic
               title="Total Revenue"
               value={stats?.totalRevenue || 0}
-              prefix={<DollarOutlined />}
+              prefix="$"
               valueStyle={{ color: '#722ed1' }}
               precision={2}
-              prefix="$"
             />
           </Card>
         </Col>

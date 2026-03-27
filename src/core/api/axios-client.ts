@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError, InternalAxiosRequestConfig } from 'axios';
 import { message } from 'antd';
 
 // API Response interface
@@ -13,6 +13,18 @@ export interface ApiResponse<T = any> {
 interface RequestConfig extends AxiosRequestConfig {
   skipAuth?: boolean;
   skipErrorHandler?: boolean;
+  metadata?: {
+    startTime: Date;
+  };
+}
+
+// Extend InternalAxiosRequestConfig to include our custom properties
+interface CustomAxiosRequestConfig extends InternalAxiosRequestConfig {
+  skipAuth?: boolean;
+  skipErrorHandler?: boolean;
+  metadata?: {
+    startTime: Date;
+  };
 }
 
 class AxiosClient {
@@ -33,11 +45,11 @@ class AxiosClient {
   private setupInterceptors() {
     // Request interceptor
     this.instance.interceptors.request.use(
-      (config: RequestConfig) => {
+      (config: CustomAxiosRequestConfig) => {
         // Add authentication token if available
         if (!config.skipAuth && typeof window !== 'undefined') {
           const token = localStorage.getItem('auth_token');
-          if (token) {
+          if (token && config.headers) {
             config.headers.Authorization = `Bearer ${token}`;
           }
         }
@@ -57,7 +69,8 @@ class AxiosClient {
       (response: AxiosResponse) => {
         // Calculate request duration
         const endTime = new Date();
-        const duration = endTime.getTime() - response.config.metadata?.startTime?.getTime();
+        const metadata = (response.config as CustomAxiosRequestConfig).metadata;
+        const duration = metadata ? endTime.getTime() - metadata.startTime.getTime() : 0;
         
         console.log(`API Request completed in ${duration}ms:`, {
           url: response.config.url,
