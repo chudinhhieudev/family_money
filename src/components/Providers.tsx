@@ -20,6 +20,7 @@ export function Providers({ children }: ProvidersProps) {
             borderRadius: 6,
           },
         }}
+        componentSize="middle"
       >
         <TanstackProvider>
           {children}

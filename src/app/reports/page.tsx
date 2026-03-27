@@ -1,7 +1,10 @@
 'use client';
 
 import { Card, Row, Col, DatePicker, Select, Button } from 'antd';
+
 import { MainLayout } from '@/components/layout/MainLayout';
+
+export const dynamic = 'force-dynamic';
 import { ChartCard } from '@/components/dashboard/ChartCard';
 import { useState } from 'react';
 import dayjs from 'dayjs';

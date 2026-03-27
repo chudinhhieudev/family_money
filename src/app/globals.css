@@ -24,3 +24,33 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Mobile responsive utilities */
+@media (max-width: 768px) {
+  .ant-layout-sider {
+    position: fixed !important;
+    height: 100vh !important;
+    z-index: 999 !important;
+  }
+  
+  .ant-layout-content {
+    margin: 16px 8px !important;
+    padding: 16px !important;
+  }
+  
+  .ant-table {
+    font-size: 12px !important;
+  }
+  
+  .ant-btn {
+    height: auto !important;
+    padding: 8px 12px !important;
+  }
+}
+
+/* Hide sidebar on mobile by default when collapsed */
+@media (max-width: 768px) {
+  .ant-layout-sider.ant-layout-sider-collapsed {
+    transform: translateX(-100%);
+  }
+}

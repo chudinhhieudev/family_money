@@ -49,10 +49,10 @@ export default function DashboardPage() {
   return (
     <MainLayout>
       <div>
-        <h1 className="text-2xl font-bold mb-6">Tổng quan</h1>
+        <h1 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Tổng quan</h1>
         
-        <Row gutter={[16, 16]} className="mb-6">
-          <Col xs={24} sm={12} lg={6}>
+        <Row gutter={[12, 12]} className="mb-4 sm:mb-6">
+          <Col xs={12} sm={12} md={6} lg={6}>
             <StatsCard
               title="Tổng thu nhập"
               value={5000000}
@@ -61,7 +61,7 @@ export default function DashboardPage() {
               trendValue={12}
             />
           </Col>
-          <Col xs={24} sm={12} lg={6}>
+          <Col xs={12} sm={12} md={6} lg={6}>
             <StatsCard
               title="Tổng chi tiêu"
               value={2350000}
@@ -70,14 +70,14 @@ export default function DashboardPage() {
               trendValue={8}
             />
           </Col>
-          <Col xs={24} sm={12} lg={6}>
+          <Col xs={12} sm={12} md={6} lg={6}>
             <StatsCard
               title="Số dư"
               value={2650000}
               color="#1890ff"
             />
           </Col>
-          <Col xs={24} sm={12} lg={6}>
+          <Col xs={12} sm={12} md={6} lg={6}>
             <StatsCard
               title="Giao dịch tháng này"
               value={47}
@@ -86,7 +86,7 @@ export default function DashboardPage() {
           </Col>
         </Row>
 
-        <Row gutter={[16, 16]}>
+        <Row gutter={[12, 12]}>
           <Col xs={24} lg={16}>
             <ChartCard title="Xu hướng chi tiêu">
               <ExpenseTrendChart />

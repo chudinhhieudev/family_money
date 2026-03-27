@@ -5,6 +5,8 @@ import { MainLayout } from '@/components/layout/MainLayout';
 import { TransactionList } from '@/components/transactions/TransactionList';
 import { Transaction } from '@/types/expense';
 
+export const dynamic = 'force-dynamic';
+
 // Mock data for demo
 const mockTransactions: Transaction[] = [
   {
@@ -109,7 +111,7 @@ export default function TransactionsPage() {
   return (
     <MainLayout>
       <div>
-        <h1 className="text-2xl font-bold mb-6">Quản lý giao dịch</h1>
+        <h1 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Quản lý giao dịch</h1>
         
         <TransactionList
           data={transactions}

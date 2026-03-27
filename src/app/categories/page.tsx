@@ -4,6 +4,9 @@ import { useState } from 'react';
 import { MainLayout } from '@/components/layout/MainLayout';
 import { CategoryList } from '@/components/categories/CategoryList';
 import { Category } from '@/types/expense';
+import { NoSSRWrapper } from '@/components/ui/NoSSRWrapper';
+
+export const dynamic = 'force-dynamic';
 
 // Mock data for demo
 const mockCategories: Category[] = [
@@ -113,17 +116,19 @@ export default function CategoriesPage() {
 
   return (
     <MainLayout>
-      <div>
-        <h1 className="text-2xl font-bold mb-6">Quản lý danh mục</h1>
-        
-        <CategoryList
-          data={categories}
-          onAdd={handleAdd}
-          onUpdate={handleUpdate}
-          onDelete={handleDelete}
-          loading={loading}
-        />
-      </div>
+      <NoSSRWrapper>
+        <div>
+          <h1 className="text-2xl font-bold mb-6">Quản lý danh mục</h1>
+          
+          <CategoryList
+            data={categories}
+            onAdd={handleAdd}
+            onUpdate={handleUpdate}
+            onDelete={handleDelete}
+            loading={loading}
+          />
+        </div>
+      </NoSSRWrapper>
     </MainLayout>
   );
 }

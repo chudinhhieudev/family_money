@@ -4,6 +4,9 @@ import { useState } from 'react';
 import { MainLayout } from '@/components/layout/MainLayout';
 import { AccountList } from '@/components/accounts/AccountList';
 import { Account } from '@/types/expense';
+import { NoSSRWrapper } from '@/components/ui/NoSSRWrapper';
+
+export const dynamic = 'force-dynamic';
 
 // Mock data for demo
 const mockAccounts: Account[] = [
@@ -89,17 +92,19 @@ export default function AccountsPage() {
 
   return (
     <MainLayout>
-      <div>
-        <h1 className="text-2xl font-bold mb-6">Quản lý tài khoản</h1>
-        
-        <AccountList
-          data={accounts}
-          onAdd={handleAdd}
-          onUpdate={handleUpdate}
-          onDelete={handleDelete}
-          loading={loading}
-        />
-      </div>
+      <NoSSRWrapper>
+        <div>
+          <h1 className="text-2xl font-bold mb-6">Quản lý tài khoản</h1>
+          
+          <AccountList
+            data={accounts}
+            onAdd={handleAdd}
+            onUpdate={handleUpdate}
+            onDelete={handleDelete}
+            loading={loading}
+          />
+        </div>
+      </NoSSRWrapper>
     </MainLayout>
   );
 }

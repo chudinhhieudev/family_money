@@ -84,7 +84,7 @@ export function TanstackProvider({ children, dehydratedState }: TanstackProvider
       <HydrationBoundary state={dehydratedState}>
         {children}
       </HydrationBoundary>
-      <ReactQueryDevtools initialIsOpen={false} />
+      {typeof window !== 'undefined' && <ReactQueryDevtools initialIsOpen={false} />}
     </QueryClientProvider>
   );
 }

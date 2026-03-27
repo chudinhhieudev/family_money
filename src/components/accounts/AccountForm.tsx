@@ -1,7 +1,8 @@
 'use client';
 
-import { Form, Input, Select, Button, Space, InputNumber } from 'antd';
+import { Form, Input, Select, Button, Space } from 'antd';
 import { Account } from '@/types/expense';
+import { ClientOnlyInputNumber } from '@/components/ui/ClientOnlyInputNumber';
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -61,10 +62,10 @@ export function AccountForm({ account, onSubmit, onCancel, loading }: AccountFor
         name="balance"
         rules={[{ required: true, message: 'Vui lòng nhập số dư' }]}
       >
-        <InputNumber
+        <ClientOnlyInputNumber
           style={{ width: '100%' }}
           placeholder="Nhập số dư"
-          formatter={(value) => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+          formatter={(value: string | number | undefined) => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
           min={0}
         />
       </Form.Item>
@@ -77,11 +78,19 @@ export function AccountForm({ account, onSubmit, onCancel, loading }: AccountFor
       </Form.Item>
 
       <Form.Item>
-        <Space>
-          <Button type="primary" htmlType="submit" loading={loading}>
+        <Space size="small" className="flex flex-wrap gap-2">
+          <Button 
+            type="primary" 
+            htmlType="submit" 
+            loading={loading}
+            className="flex-1 sm:flex-none min-w-[100px]"
+          >
             {account ? 'Cập nhật' : 'Thêm mới'}
           </Button>
-          <Button onClick={onCancel}>
+          <Button 
+            onClick={onCancel}
+            className="flex-1 sm:flex-none min-w-[80px]"
+          >
             Hủy
           </Button>
         </Space>

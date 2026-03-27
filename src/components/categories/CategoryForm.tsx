@@ -1,7 +1,8 @@
 'use client';
 
-import { Form, Input, Select, Button, Space, ColorPicker } from 'antd';
+import { Form, Input, Select, Button, Space } from 'antd';
 import { Category, TransactionType } from '@/types/expense';
+import { ClientOnlyColorPicker } from '@/components/ui/ClientOnlyColorPicker';
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -78,7 +79,7 @@ export function CategoryForm({ category, onSubmit, onCancel, loading }: Category
         label="Màu sắc"
         name="color"
       >
-        <ColorPicker showText />
+        <ClientOnlyColorPicker showText />
       </Form.Item>
 
       <Form.Item
@@ -89,11 +90,19 @@ export function CategoryForm({ category, onSubmit, onCancel, loading }: Category
       </Form.Item>
 
       <Form.Item>
-        <Space>
-          <Button type="primary" htmlType="submit" loading={loading}>
+        <Space size="small" className="flex flex-wrap gap-2">
+          <Button 
+            type="primary" 
+            htmlType="submit" 
+            loading={loading}
+            className="flex-1 sm:flex-none min-w-[100px]"
+          >
             {category ? 'Cập nhật' : 'Thêm mới'}
           </Button>
-          <Button onClick={onCancel}>
+          <Button 
+            onClick={onCancel}
+            className="flex-1 sm:flex-none min-w-[80px]"
+          >
             Hủy
           </Button>
         </Space>

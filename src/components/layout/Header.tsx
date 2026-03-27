@@ -14,13 +14,16 @@ export function Header({ collapsed, onToggle }: HeaderProps) {
   return (
     <div
       style={{
-        padding: '0 24px',
+        padding: '0 16px',
         background: '#fff',
         borderBottom: '1px solid #f0f0f0',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
         height: 64,
+        position: 'sticky',
+        top: 0,
+        zIndex: 99,
       }}
     >
       <Button
@@ -29,16 +32,24 @@ export function Header({ collapsed, onToggle }: HeaderProps) {
         onClick={onToggle}
         style={{
           fontSize: '16px',
-          width: 64,
-          height: 64,
+          width: 48,
+          height: 48,
         }}
       />
       
-      <Space>
-        <Title level={5} style={{ margin: 0, color: '#666' }}>
+      <Space size="small">
+        <Title 
+          level={5} 
+          style={{ 
+            margin: 0, 
+            color: '#666',
+            fontSize: '14px',
+          }} 
+          className="hidden sm:block"
+        >
           Chào mừng trở lại!
         </Title>
-        <Avatar icon={<UserOutlined />} />
+        <Avatar size="small" icon={<UserOutlined />} />
       </Space>
     </div>
   );
