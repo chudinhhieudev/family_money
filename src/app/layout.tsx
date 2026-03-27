@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Enterprise Next.js App",
-  description: "Next.js 16 Enterprise Application with TypeScript",
+  title: "Quản lý chi tiêu cá nhân",
+  description: "Ứng dụng quản lý chi tiêu cá nhân",
 };
 
 export default function RootLayout({
